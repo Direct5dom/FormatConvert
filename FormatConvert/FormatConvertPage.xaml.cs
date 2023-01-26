@@ -121,14 +121,21 @@ namespace FormatConvert
         }
         private void convertButton_Click(object sender, RoutedEventArgs e)
         {
-            Process process = new Process();
-            process.StartInfo.FileName = "PowerShell.exe";
-            //process.StartInfo.Arguments = "ffmpeg -i '" + inputPath.Text + "' " + VideoStatus + " " + VcodecSelect + " " + AudioStatus + " " + AcodecSelect + " '" + outputPath.Text + "'";
-            process.StartInfo.UseShellExecute = false; //是否使用操作系统shell启动
-            process.StartInfo.CreateNoWindow = true; //是否在新窗口中启动该进程的值 (不显示程序窗口)
-            process.Start();
-            process.WaitForExit(); //等待程序执行完退出进程
-            process.Close();
+            // 转换
+            {
+                Process process = new Process();
+                process.StartInfo.FileName = "PowerShell.exe";
+                process.StartInfo.Arguments = "ffmpeg -i '" + inputPath.Text + "' " + VideoStatus + " " + VcodecSelect + " " + AudioStatus + " " + AcodecSelect + " '" + outputPath.Text + "\\" + outputFileName.Text + "'";
+                process.StartInfo.UseShellExecute = false; //是否使用操作系统shell启动
+                process.StartInfo.CreateNoWindow = false; //是否在新窗口中启动该进程的值 (不显示程序窗口)
+                process.Start();
+                process.WaitForExit(); //等待程序执行完退出进程
+                process.Close();
+            }
+
+            // 打开文件夹并选中输出文件
+            System.Diagnostics.Process.Start("Explorer", "/select," + outputPath.Text + "\\" + outputFileName.Text);
+
         }
 
         private void videoChanged(object sender, SelectionChangedEventArgs e)
