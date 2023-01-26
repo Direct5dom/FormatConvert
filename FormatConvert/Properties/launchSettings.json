@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "FormatConvert (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "FormatConvert (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

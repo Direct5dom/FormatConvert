@@ -1,0 +1,121 @@
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Page
+    x:Class="FormatConvert.FormatConvertPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FormatConvert"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="16,16,16,16">
+            <TextBlock Text="格式转换" 
+                       FontSize="20" 
+                       HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,8">
+                <TextBox x:Name="inputPath" 
+                         Header="输入文件：" 
+                         PlaceholderText="输入文件" 
+                         TextChanged="inputPath_TextChanged" 
+                         Width="400" 
+                         HorizontalAlignment="Center" 
+                         VerticalAlignment="Bottom"/>
+                <Button x:Name="inputPathPickerButton" 
+                        Click="inputPathPickerButton_Click" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Bottom" 
+                        Width="100" 
+                        Margin="8,0,0,0">选择文件</Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,8">
+                <TextBox x:Name="outputPath" 
+                         Header="输出目录：" 
+                         PlaceholderText="输出目录" 
+                         TextChanged="outputPath_TextChanged" 
+                         Width="400"/>
+                <Button x:Name="outputPathPickerButton" 
+                        Click="outputPathPickerButton_Click" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Bottom" 
+                        Width="100" 
+                        Margin="8,0,0,0">选择目录</Button>
+            </StackPanel>
+            <TextBox x:Name="outputFileName" 
+                         Header="输出文件名（修改后缀即可更改格式）：" 
+                         PlaceholderText="输出文件名" 
+                         TextChanged="outputFileName_TextChanged" 
+                         Width="508"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,8">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ComboBox x:Name="videoStatus" 
+                              ItemsSource="{x:Bind status}" 
+                              SelectionChanged="videoChanged" 
+                              Header="Video:" 
+                              PlaceholderText="Keep" 
+                              Width="100">
+                    </ComboBox>
+                    <ComboBox x:Name="audioStatus" 
+                              ItemsSource="{x:Bind status}" 
+                              SelectionChanged="audioChanged" 
+                              Header="Audio" 
+                              PlaceholderText="Keep" 
+                              Width="100" 
+                              Margin="0,8,0,0">
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8,0,0,0">
+                    <ComboBox x:Name="vcodecChangedX" 
+                              ItemsSource="{x:Bind vcodec}" 
+                              SelectionChanged="vcodecChanged" 
+                              Header="Video Codec:" 
+                              IsEnabled="True" 
+                              PlaceholderText="Copy" 
+                              Width="100">
+                    </ComboBox>
+                    <ComboBox x:Name="acodecChangedX" 
+                              ItemsSource="{x:Bind acodec}" 
+                              SelectionChanged="acodecChanged" 
+                              Header="Audio Codec:" 
+                              IsEnabled="True" 
+                              PlaceholderText="Copy" 
+                              Width="100" 
+                              Margin="0,8,0,0">
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,8,0,8">
+                <Button x:Name="convertButton" 
+                        Content="转换" 
+                        Click="convertButton_Click" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        MinWidth="100" 
+                        MaxWidth="100" 
+                        Margin="0,0,0,8"/>
+                <TextBlock x:Name="convertStatus" 
+                           Text="NaN" FontSize="12" 
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Center" 
+                           Margin="8,0,0,8"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,8,0,8">
+                <TextBox x:Name="cmd" 
+                         Header="命令行：" 
+                         PlaceholderText="CMD" 
+                         Width="400"/>
+                <Button x:Name="cmdCopyButton" 
+                        Click="cmdCopyButton_Click" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Bottom" 
+                        Width="100" 
+                        Margin="8,0,0,0">复制命令</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
